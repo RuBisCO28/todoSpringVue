@@ -37,9 +37,10 @@ public class TodoController {
     return TodoResponse.from(todo);
   }
 
+  @SuppressWarnings({"checkstyle:WhitespaceAfter", "checkstyle:WhitespaceAround"})
   @PostMapping
   public ApiResponse<?> insert(@RequestBody @Validated TodoRequest request, @NonNull BindingResult result) {
-    if(result.hasErrors()) {
+    if (result.hasErrors()) {
       return ApiResponse.failed(HttpStatus.BAD_REQUEST.value(), "Invalid message insert request", new ErrorMessages(result.getFieldErrors()));
     }
     todoService.create(request);
